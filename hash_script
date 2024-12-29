@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ $# -ne 1 ] # $# είναι ο αριθμός των ορισμάτων που δόθηκαν.
+then
+        echo "The script takes exactly one number as an argument. Try again."
+        exit 1
+fi
+if [[ ! "$1" =~ ^[0-9]{4}$ ]] #Ελέγχει αν το όρισμα είναι αριθμός με ακριβώς 4 ψηφία.
+then
+	echo "The script takes exactly a 4-digit number as an argument. Try again."
+	exit 1
+fi
+echo -n "$1" | sha256sum > hash_output.txt #Κάνει hash το argument και το αποθηκεύει στο output. Αν έγραφα κατευθείαν sha256sum "$1" θα έψαχνε για filepath με όνομα "$1".
